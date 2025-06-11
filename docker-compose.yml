@@ -1,0 +1,92 @@
+# -------------------------------------------------------------------------------------
+# NOTE 1: 
+#   To run this on a remote host, ensure DOCKER_HOST environment variable is set.
+#   Example: export DOCKER_HOST=“ssh://user@remotehost”
+# -------------------------------------------------------------------------------------
+
+services:
+
+  # ----------------------------------------------------------------
+  # [Container] Monitoring and Visualization
+  # ----------------------------------------------------------------
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: ${PROJECT_NAME}-grafana
+    restart: unless-stopped
+    ports:
+      - '3003:3000'
+    volumes:
+      - grafana-data:/var/lib/grafana
+    env_file:
+      - .env
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_SECURITY_ADMIN_PASSWORD}
+    networks:
+      - ${PROJECT_NAME}
+
+  # ----------------------------------------------------------------
+  # [Container] Analytical storage
+  # ----------------------------------------------------------------
+  postgres:
+    image: postgres:latest
+    container_name: ${PROJECT_NAME}-postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ${PROJECT_NAME}
+
+  # ----------------------------------------------------------------
+  # [Container] Message Queue
+  # ----------------------------------------------------------------
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: ${PROJECT_NAME}-rabbitmq
+    env_file:
+      - .env
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+      - '15673:15672'
+      #- "${RABBITMQ_HOST_MANAGEMENT_PORT}:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    restart: unless-stopped
+    networks:
+      - ${PROJECT_NAME}
+
+  # ----------------------------------------------------------------
+  # [Container] Ingestion Service
+  # ----------------------------------------------------------------
+  ingestion:
+    build:
+      context: .
+      dockerfile: ./ingestion/Dockerfile
+    container_name: ${PROJECT_NAME}-ingestion
+    env_file:
+      - .env
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - INGESTION_REVIEWS_FILE=${INGESTION_REVIEWS_FILE}
+    depends_on:
+      - rabbitmq
+    networks:
+      - ${PROJECT_NAME}
+
+volumes:
+  rabbitmq_data:
+  grafana-data:
+  postgres_data:
+
+networks:
+  fps-blueprint-sentiment-analysis:
+    driver: bridge

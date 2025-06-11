@@ -1,0 +1,452 @@
+[
+  {
+    "reviewId": 1,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "Great food and friendly staff! Will definitely come back.",
+    "starRating": 5,
+    "datetime": "2024-01-05T12:15:00Z",
+    "externalCustomerId": "e1b2c3d4-0001-4000-8000-000000000001"
+  },
+  {
+    "reviewId": 2,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "Loved the ambiance, but the service was a bit slow.",
+    "starRating": 4,
+    "datetime": "2024-01-15T13:20:00Z",
+    "externalCustomerId": "e1b2c3d4-0002-4000-8000-000000000002"
+  },
+  {
+    "reviewId": 3,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The burger was juicy and delicious. Highly recommend!",
+    "starRating": 5,
+    "datetime": "2024-02-10T14:10:00Z",
+    "externalCustomerId": "e1b2c3d4-0003-4000-8000-000000000003"
+  },
+  {
+    "reviewId": 4,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "Waited 30 minutes for my order. Not impressed.",
+    "starRating": 2,
+    "datetime": "2024-02-18T15:05:00Z",
+    "externalCustomerId": "e1b2c3d4-0004-4000-8000-000000000004"
+  },
+  {
+    "reviewId": 5,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The desserts are to die for! Especially the cheesecake.",
+    "starRating": 5,
+    "datetime": "2024-03-01T16:00:00Z",
+    "externalCustomerId": "e1b2c3d4-0005-4000-8000-000000000005"
+  },
+  {
+    "reviewId": 6,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "Clean restaurant and attentive staff. Will visit again.",
+    "starRating": 4,
+    "datetime": "2024-03-12T17:10:00Z",
+    "externalCustomerId": "e1b2c3d4-0006-4000-8000-000000000006"
+  },
+  {
+    "reviewId": 7,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "Food was cold when served. Disappointed.",
+    "starRating": 1,
+    "datetime": "2024-03-22T18:15:00Z",
+    "externalCustomerId": "e1b2c3d4-0007-4000-8000-000000000007"
+  },
+  {
+    "reviewId": 8,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "Amazing vegan options! So happy to find this place.",
+    "starRating": 5,
+    "datetime": "2024-04-02T19:20:00Z",
+    "externalCustomerId": "e1b2c3d4-0008-4000-8000-000000000008"
+  },
+  {
+    "reviewId": 9,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The music was too loud, but the food made up for it.",
+    "starRating": 3,
+    "datetime": "2024-04-10T20:25:00Z",
+    "externalCustomerId": "e1b2c3d4-0009-4000-8000-000000000009"
+  },
+  {
+    "reviewId": 10,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "Best steak in town. Perfectly cooked.",
+    "starRating": 5,
+    "datetime": "2024-04-18T21:30:00Z",
+    "externalCustomerId": "e1b2c3d4-0001-4000-8000-000000000001"
+  },
+  {
+    "reviewId": 11,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "Friendly staff and quick service. Loved it!",
+    "starRating": 5,
+    "datetime": "2024-05-01T22:35:00Z",
+    "externalCustomerId": "e1b2c3d4-0011-4000-8000-000000000011"
+  },
+  {
+    "reviewId": 12,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The pasta was bland. Needs more seasoning.",
+    "starRating": 2,
+    "datetime": "2024-05-10T23:40:00Z",
+    "externalCustomerId": "e1b2c3d4-0012-4000-8000-000000000012"
+  },
+  {
+    "reviewId": 13,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "Great place for family dinners. Kids loved the menu.",
+    "starRating": 5,
+    "datetime": "2024-05-18T12:15:00Z",
+    "externalCustomerId": "e1b2c3d4-0002-4000-8000-000000000002"
+  },
+  {
+    "reviewId": 14,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The cocktails are creative and delicious.",
+    "starRating": 5,
+    "datetime": "2024-06-01T13:20:00Z",
+    "externalCustomerId": "e1b2c3d4-0014-4000-8000-000000000014"
+  },
+  {
+    "reviewId": 15,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "Staff seemed overwhelmed. Long wait times.",
+    "starRating": 2,
+    "datetime": "2024-06-10T14:10:00Z",
+    "externalCustomerId": "e1b2c3d4-0015-4000-8000-000000000015"
+  },
+  {
+    "reviewId": 16,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "Loved the outdoor seating area. Very cozy.",
+    "starRating": 5,
+    "datetime": "2024-06-18T15:05:00Z",
+    "externalCustomerId": "e1b2c3d4-0003-4000-8000-000000000003"
+  },
+  {
+    "reviewId": 17,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The fries were soggy. Not what I expected.",
+    "starRating": 2,
+    "datetime": "2024-07-01T16:00:00Z",
+    "externalCustomerId": "e1b2c3d4-0017-4000-8000-000000000017"
+  },
+  {
+    "reviewId": 18,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "Excellent gluten-free options. Thank you!",
+    "starRating": 5,
+    "datetime": "2024-07-10T17:10:00Z",
+    "externalCustomerId": "e1b2c3d4-0018-4000-8000-000000000018"
+  },
+  {
+    "reviewId": 19,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "The server was rude. Won't be coming back.",
+    "starRating": 1,
+    "datetime": "2024-07-18T18:15:00Z",
+    "externalCustomerId": "e1b2c3d4-0004-4000-8000-000000000004"
+  },
+  {
+    "reviewId": 20,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "Portion sizes are generous. Great value for money.",
+    "starRating": 4,
+    "datetime": "2024-08-01T19:20:00Z",
+    "externalCustomerId": "e1b2c3d4-0020-4000-8000-000000000020"
+  },
+  {
+    "reviewId": 21,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "Loved the decor and the vibe. Food was good too.",
+    "starRating": 4,
+    "datetime": "2024-08-10T20:25:00Z",
+    "externalCustomerId": "e1b2c3d4-0021-4000-8000-000000000021"
+  },
+  {
+    "reviewId": 22,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "The soup was too salty. Otherwise, nice experience.",
+    "starRating": 3,
+    "datetime": "2024-08-18T21:30:00Z",
+    "externalCustomerId": "e1b2c3d4-0005-4000-8000-000000000005"
+  },
+  {
+    "reviewId": 23,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "Perfect spot for brunch with friends.",
+    "starRating": 5,
+    "datetime": "2024-09-01T22:35:00Z",
+    "externalCustomerId": "e1b2c3d4-0023-4000-8000-000000000023"
+  },
+  {
+    "reviewId": 24,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The restrooms were clean and well-maintained.",
+    "starRating": 4,
+    "datetime": "2024-09-10T23:40:00Z",
+    "externalCustomerId": "e1b2c3d4-0024-4000-8000-000000000024"
+  },
+  {
+    "reviewId": 25,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "Great selection of beers on tap.",
+    "starRating": 5,
+    "datetime": "2024-09-18T12:15:00Z",
+    "externalCustomerId": "e1b2c3d4-0006-4000-8000-000000000006"
+  },
+  {
+    "reviewId": 26,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The pizza crust was burnt. Not happy.",
+    "starRating": 2,
+    "datetime": "2024-10-01T13:20:00Z",
+    "externalCustomerId": "e1b2c3d4-0026-4000-8000-000000000026"
+  },
+  {
+    "reviewId": 27,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "Staff went above and beyond to accommodate us.",
+    "starRating": 5,
+    "datetime": "2024-10-10T14:10:00Z",
+    "externalCustomerId": "e1b2c3d4-0027-4000-8000-000000000027"
+  },
+  {
+    "reviewId": 28,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "The salad was fresh and tasty.",
+    "starRating": 4,
+    "datetime": "2024-10-18T15:05:00Z",
+    "externalCustomerId": "e1b2c3d4-0007-4000-8000-000000000007"
+  },
+  {
+    "reviewId": 29,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "Loved the live music on Friday night!",
+    "starRating": 5,
+    "datetime": "2024-11-01T16:00:00Z",
+    "externalCustomerId": "e1b2c3d4-0029-4000-8000-000000000029"
+  },
+  {
+    "reviewId": 30,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The chicken was undercooked. Please be careful.",
+    "starRating": 1,
+    "datetime": "2024-11-10T17:10:00Z",
+    "externalCustomerId": "e1b2c3d4-0030-4000-8000-000000000030"
+  },
+  {
+    "reviewId": 31,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "Great place for a quick lunch.",
+    "starRating": 4,
+    "datetime": "2024-11-18T18:15:00Z",
+    "externalCustomerId": "e1b2c3d4-0008-4000-8000-000000000008"
+  },
+  {
+    "reviewId": 32,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The staff remembered my order from last time. Impressive!",
+    "starRating": 5,
+    "datetime": "2024-12-01T19:20:00Z",
+    "externalCustomerId": "e1b2c3d4-0032-4000-8000-000000000032"
+  },
+  {
+    "reviewId": 33,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The coffee was strong and flavorful.",
+    "starRating": 4,
+    "datetime": "2024-12-10T20:25:00Z",
+    "externalCustomerId": "e1b2c3d4-0033-4000-8000-000000000033"
+  },
+  {
+    "reviewId": 34,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "Too noisy during peak hours.",
+    "starRating": 2,
+    "datetime": "2024-12-18T21:30:00Z",
+    "externalCustomerId": "e1b2c3d4-0009-4000-8000-000000000009"
+  },
+  {
+    "reviewId": 35,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The fish tacos are my favorite!",
+    "starRating": 5,
+    "datetime": "2024-01-05T22:35:00Z",
+    "externalCustomerId": "e1b2c3d4-0011-4000-8000-000000000011"
+  },
+  {
+    "reviewId": 36,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The menu has a lot of variety. Something for everyone.",
+    "starRating": 4,
+    "datetime": "2024-02-10T23:40:00Z",
+    "externalCustomerId": "e1b2c3d4-0036-4000-8000-000000000036"
+  },
+  {
+    "reviewId": 37,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "The air conditioning was too cold.",
+    "starRating": 2,
+    "datetime": "2024-03-12T12:15:00Z",
+    "externalCustomerId": "e1b2c3d4-0012-4000-8000-000000000012"
+  },
+  {
+    "reviewId": 38,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "Loved the seasonal specials.",
+    "starRating": 5,
+    "datetime": "2024-04-02T13:20:00Z",
+    "externalCustomerId": "e1b2c3d4-0038-4000-8000-000000000038"
+  },
+  {
+    "reviewId": 39,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The lemonade was refreshing.",
+    "starRating": 4,
+    "datetime": "2024-05-10T14:30:00Z",
+    "externalCustomerId": "e1b2c3d4-0039-4000-8000-000000000039"
+  },
+  {
+    "reviewId": 40,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "The staff was very accommodating to my allergies.",
+    "starRating": 5,
+    "datetime": "2024-06-18T15:00:00Z",
+    "externalCustomerId": "e1b2c3d4-0003-4000-8000-000000000003"
+  },
+  {
+    "reviewId": 41,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The burger buns were stale.",
+    "starRating": 2,
+    "datetime": "2024-07-01T15:30:00Z",
+    "externalCustomerId": "e1b2c3d4-0041-4000-8000-000000000041"
+  },
+  {
+    "reviewId": 42,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "Great place for date night.",
+    "starRating": 4,
+    "datetime": "2024-08-10T16:00:00Z",
+    "externalCustomerId": "e1b2c3d4-0042-4000-8000-000000000042"
+  },
+  {
+    "reviewId": 43,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "The food came out quickly and was hot.",
+    "starRating": 4,
+    "datetime": "2024-09-18T16:30:00Z",
+    "externalCustomerId": "e1b2c3d4-0006-4000-8000-000000000006"
+  },
+  {
+    "reviewId": 44,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The staff was not attentive.",
+    "starRating": 2,
+    "datetime": "2024-10-01T17:00:00Z",
+    "externalCustomerId": "e1b2c3d4-0044-4000-8000-000000000044"
+  },
+  {
+    "reviewId": 45,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The soup of the day was delicious.",
+    "starRating": 5,
+    "datetime": "2024-11-10T17:30:00Z",
+    "externalCustomerId": "e1b2c3d4-0030-4000-8000-000000000030"
+  },
+  {
+    "reviewId": 46,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "The chairs were uncomfortable.",
+    "starRating": 2,
+    "datetime": "2024-12-18T18:00:00Z",
+    "externalCustomerId": "e1b2c3d4-0009-4000-8000-000000000009"
+  },
+  {
+    "reviewId": 47,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The ice cream was creamy and rich.",
+    "starRating": 5,
+    "datetime": "2024-01-05T18:30:00Z",
+    "externalCustomerId": "e1b2c3d4-0011-4000-8000-000000000011"
+  },
+  {
+    "reviewId": 48,
+    "location": "Midtown",
+    "channel": "Facebook",
+    "text": "The staff wore masks and followed safety protocols.",
+    "starRating": 4,
+    "datetime": "2024-02-10T19:00:00Z",
+    "externalCustomerId": "e1b2c3d4-0036-4000-8000-000000000036"
+  },
+  {
+    "reviewId": 49,
+    "location": "Downtown",
+    "channel": "Google Maps",
+    "text": "The portions were small for the price.",
+    "starRating": 3,
+    "datetime": "2024-03-12T19:30:00Z",
+    "externalCustomerId": "e1b2c3d4-0012-4000-8000-000000000012"
+  },
+  {
+    "reviewId": 50,
+    "location": "Uptown",
+    "channel": "Instagram",
+    "text": "The view from the patio is amazing!",
+    "starRating": 5,
+    "datetime": "2024-04-02T20:00:00Z",
+    "externalCustomerId": "e1b2c3d4-0038-4000-8000-000000000038"
+  }
+]

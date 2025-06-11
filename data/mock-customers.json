@@ -1,0 +1,132 @@
+[
+  {
+    "customerId": "1",
+    "externalCustomerId": "e1b2c3d4-0003-4000-8000-000000000003",
+    "customerLifetimeValue": 12000.50,
+    "customerSince": "2018-03-15",
+    "netPromoterScore": 8
+  },
+  {
+    "customerId": "2",
+    "externalCustomerId": "e1b2c3d4-0012-4000-8000-000000000012",
+    "customerLifetimeValue": 5400.00,
+    "customerSince": "2019-07-21",
+    "netPromoterScore": 6
+  },
+  {
+    "customerId": "3",
+    "externalCustomerId": "e1b2c3d4-0008-4000-8000-000000000008",
+    "customerLifetimeValue": 23000.75,
+    "customerSince": "2017-11-02",
+    "netPromoterScore": 9
+  },
+  {
+    "customerId": "4",
+    "externalCustomerId": "e1b2c3d4-0006-4000-8000-000000000006",
+    "customerLifetimeValue": 3500.00,
+    "customerSince": "2020-01-10",
+    "netPromoterScore": 7
+  },
+  {
+    "customerId": "5",
+    "externalCustomerId": "e1b2c3d4-0020-4000-8000-000000000020",
+    "customerLifetimeValue": 15000.00,
+    "customerSince": "2016-05-30",
+    "netPromoterScore": 10
+  },
+  {
+    "customerId": "6",
+    "externalCustomerId": "e1b2c3d4-0009-4000-8000-000000000009",
+    "customerLifetimeValue": 8000.25,
+    "customerSince": "2018-09-14",
+    "netPromoterScore": 5
+  },
+  {
+    "customerId": "7",
+    "externalCustomerId": "e1b2c3d4-0004-4000-8000-000000000004",
+    "customerLifetimeValue": 4200.00,
+    "customerSince": "2021-03-22",
+    "netPromoterScore": 4
+  },
+  {
+    "customerId": "8",
+    "externalCustomerId": "e1b2c3d4-0011-4000-8000-000000000011",
+    "customerLifetimeValue": 9800.00,
+    "customerSince": "2019-12-01",
+    "netPromoterScore": 7
+  },
+  {
+    "customerId": "9",
+    "externalCustomerId": "e1b2c3d4-0001-4000-8000-000000000001",
+    "customerLifetimeValue": 6700.50,
+    "customerSince": "2020-06-18",
+    "netPromoterScore": 6
+  },
+  {
+    "customerId": "10",
+    "externalCustomerId": "e1b2c3d4-0002-4000-8000-000000000002",
+    "customerLifetimeValue": 25000.00,
+    "customerSince": "2015-08-25",
+    "netPromoterScore": 9
+  },
+  {
+    "customerId": "11",
+    "customerLifetimeValue": 3000.00,
+    "customerSince": "2022-02-11",
+    "netPromoterScore": 3
+  },
+  {
+    "customerId": "12",
+    "customerLifetimeValue": 11000.00,
+    "customerSince": "2018-04-19",
+    "netPromoterScore": 8
+  },
+  {
+    "customerId": "13",
+    "customerLifetimeValue": 7600.00,
+    "customerSince": "2019-10-05",
+    "netPromoterScore": 7
+  },
+  {
+    "customerId": "14",
+    "customerLifetimeValue": 5400.00,
+    "customerSince": "2020-12-15",
+    "netPromoterScore": 5
+  },
+  {
+    "customerId": "15",
+    "customerLifetimeValue": 18000.00,
+    "customerSince": "2017-06-30",
+    "netPromoterScore": 10
+  },
+  {
+    "customerId": "16",
+    "customerLifetimeValue": 9000.00,
+    "customerSince": "2018-08-23",
+    "netPromoterScore": 6
+  },
+  {
+    "customerId": "17",
+    "customerLifetimeValue": 6500.00,
+    "customerSince": "2021-01-17",
+    "netPromoterScore": 7
+  },
+  {
+    "customerId": "18",
+    "customerLifetimeValue": 12000.00,
+    "customerSince": "2019-05-12",
+    "netPromoterScore": 8
+  },
+  {
+    "customerId": "19",
+    "customerLifetimeValue": 4000.00,
+    "customerSince": "2022-03-09",
+    "netPromoterScore": 4
+  },
+  {
+    "customerId": "20",
+    "customerLifetimeValue": 22000.00,
+    "customerSince": "2016-10-28",
+    "netPromoterScore": 9
+  }
+]
