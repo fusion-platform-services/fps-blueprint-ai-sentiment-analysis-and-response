@@ -9,11 +9,13 @@ dotenv.config();
 const RABBITMQ_URL = `amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@rabbitmq:5672`;
 const POSTGRES_URL = `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@postgres:5432/${process.env.POSTGRES_DB}`;
 const CURATED_QUEUE_NAME = 'curated';
+const OUTGOING_QUEUE_NAME = 'outgoing';
 
 async function ensureTable(client) {
   await client.query(`
     CREATE TABLE IF NOT EXISTS processed_responses (
       review_id INT PRIMARY KEY,
+      channel TEXT,
       external_customer_id TEXT,
       customer_name TEXT,
       review_text TEXT,
@@ -25,10 +27,11 @@ async function ensureTable(client) {
   `);
 }
 
-async function processReview(record, client) {
+async function processReview(record, client, amqpChannel) {
   const reviewText = record.review || record.reviewText || record.text || '';
   const reviewId = record.reviewId || record.id || null;
   const externalCustomerId = record.externalCustomerId || null;
+  const channel = record.channel || 'unknown';
   const customerName = record.customer?.name || null;
 
   const prompt = `
@@ -42,6 +45,9 @@ Write output as a JSON formatted string.
 
   let sentiment = null, theme = null, ai_response = null;
 
+  // ---------
+  // Get AI response
+  // ---------
   try {
     const response = await getAIResponse(prompt, reviewText);
     console.log('OpenAI response:', response.output_text);
@@ -59,13 +65,17 @@ Write output as a JSON formatted string.
     console.error('OpenAI API error:', err.message);
   }
 
+  // ---------
+  // Insert into PostgreSQL
+  // ---------
   await client.query(
     `INSERT INTO processed_responses 
-      (review_id, external_customer_id, customer_name, review_text, sentiment, theme, ai_response)
-     VALUES ($1, $2, $3, $4, $5, $6, $7)
+      (review_id, channel, external_customer_id, customer_name, review_text, sentiment, theme, ai_response)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
      ON CONFLICT (review_id) DO NOTHING`,
     [
       reviewId,
+      channel,
       externalCustomerId,
       customerName,
       reviewText,
@@ -74,6 +84,28 @@ Write output as a JSON formatted string.
       ai_response
     ]
   );
+
+  // ---------
+  // Send AI response to the outgoing queue
+  // ---------
+  if (amqpChannel && ai_response) {
+    const outgoingPayload = {
+      reviewId,
+      channel,
+      externalCustomerId,
+      customerName,
+      reviewText,
+      sentiment,
+      theme,
+      ai_response
+    };
+    await amqpChannel.assertQueue(OUTGOING_QUEUE_NAME, { durable: true });
+    amqpChannel.sendToQueue(
+      OUTGOING_QUEUE_NAME,
+      Buffer.from(JSON.stringify(outgoingPayload)),
+      { persistent: true }
+    );
+  }
 }
 
 async function main() {
@@ -98,7 +130,7 @@ async function main() {
 
       // Enrich with customer if needed
       const enrichedRecord = { ...record };
-      await processReview(enrichedRecord, pgClient);
+      await processReview(enrichedRecord, pgClient, channel);
 
       channel.ack(msg);
     }
