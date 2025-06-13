@@ -7,17 +7,13 @@ const client = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-exports.getAIResponse = async (prompt, userMessage, conversationHistory, options) => {
+exports.getAIResponse = async (prompt, userMessage, options = {}) => {
     try {
-        const { timeout = 900.0, serviceTier = "default", model = "o3-mini" } = options;
-        const lastResponseId = conversationHistory && conversationHistory.length > 0 ? conversationHistory[conversationHistory.length - 1].externalResponseId : null;
+        const { timeout = 500.0, serviceTier = "default", model = "o3-mini" } = options;
         
         const response = await client.responses.create({
             model,
-            previous_response_id: lastResponseId,
-            input: lastResponseId 
-                ? [] // Skip prompt and conversationHistory if lastResponseId exists
-                : [
+            input: [
                     { role: "system", content: prompt },
                     { role: "user", content: userMessage ? userMessage : '' },
                 ],

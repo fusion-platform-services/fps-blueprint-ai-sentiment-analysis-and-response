@@ -13,8 +13,7 @@ const CURATED_QUEUE_NAME = 'curated';
 async function ensureTable(client) {
   await client.query(`
     CREATE TABLE IF NOT EXISTS processed_responses (
-      id SERIAL PRIMARY KEY,
-      review_id TEXT UNIQUE,
+      review_id INT PRIMARY KEY,
       external_customer_id TEXT,
       customer_name TEXT,
       review_text TEXT,
@@ -24,7 +23,6 @@ async function ensureTable(client) {
       created_at TIMESTAMPTZ DEFAULT NOW()
     )
   `);
-  await client.query(`CREATE UNIQUE INDEX IF NOT EXISTS idx_processed_responses_review_id ON processed_responses(review_id)`);
 }
 
 async function processReview(record, client) {
@@ -40,28 +38,17 @@ Analyze the customer review based on the following three criteria:
 - response: only for negative reviews write a response to the customer. Offer free shipping as needed. For extreme cases offer 5% discount coupon for the next purchase in the store.
 
 Write output as a JSON formatted string.
-
-User Review: 
-${reviewText}
 `;
 
   let sentiment = null, theme = null, ai_response = null;
 
   try {
-    const aiResult = await getAIResponse(prompt, null, []);
-    let aiText;
-    if (aiResult && aiResult.choices && aiResult.choices[0] && aiResult.choices[0].message && aiResult.choices[0].message.content) {
-      aiText = aiResult.choices[0].message.content;
-    } else if (typeof aiResult === 'string') {
-      aiText = aiResult;
-    } else {
-      aiText = '';
-    }
-    console.log('OpenAI response:', aiText);
+    const response = await getAIResponse(prompt, reviewText);
+    console.log('OpenAI response:', response.output_text);
 
     let parsed;
     try {
-      parsed = JSON.parse(aiText);
+      parsed = JSON.parse(response.output_text);
       sentiment = parsed.sentiment || null;
       theme = parsed.theme || null;
       ai_response = parsed.response || null;
