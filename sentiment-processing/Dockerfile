@@ -2,10 +2,10 @@ FROM node:23-alpine
 
 WORKDIR /app
 
-COPY ingestion/package.json ./
+COPY sentiment-processing/package.json ./
 RUN npm install
 
-COPY ingestion/. .
+COPY sentiment-processing/. .
 
 # Copy data from root project folder into /app/data in the container
 COPY data ./data

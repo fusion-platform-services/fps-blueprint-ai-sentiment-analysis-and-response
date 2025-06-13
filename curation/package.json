@@ -1,0 +1,14 @@
+{
+  "name": "curation",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Farid Gurbanov",
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.10.8",
+    "dotenv": "^16.5.0"
+  }
+}
