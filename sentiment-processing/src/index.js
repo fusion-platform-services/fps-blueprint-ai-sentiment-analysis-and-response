@@ -10,6 +10,7 @@ const RABBITMQ_URL = `amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.
 const POSTGRES_URL = `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@postgres:5432/${process.env.POSTGRES_DB}`;
 const CURATED_QUEUE_NAME = 'curated';
 const OUTGOING_QUEUE_NAME = 'outgoing';
+const NOTIFICATION_QUEUE_NAME = 'notification';
 
 async function ensureTable(client) {
   await client.query(`
@@ -19,6 +20,8 @@ async function ensureTable(client) {
       external_customer_id TEXT,
       customer_name TEXT,
       review_text TEXT,
+      star_rating INT,
+      escalation BOOLEAN DEFAULT FALSE,
       sentiment TEXT,
       theme TEXT,
       ai_response TEXT,
@@ -29,6 +32,7 @@ async function ensureTable(client) {
 
 async function processReview(record, client, amqpChannel) {
   const reviewText = record.review || record.reviewText || record.text || '';
+  const starRating = record.starRating || record.rating || 0;
   const reviewId = record.reviewId || record.id || null;
   const externalCustomerId = record.externalCustomerId || null;
   const channel = record.channel || 'unknown';
@@ -39,11 +43,12 @@ Analyze the customer review based on the following three criteria:
 - sentiment: could be 'Positive', 'Neutral', or 'Negative'.
 - theme: generalize key words from the review.
 - response: only for negative reviews write a response to the customer. Offer free shipping as needed. For extreme cases offer 5% discount coupon for the next purchase in the store.
+- escalation: (only true / false) if the sentiment is 'Negative' and the review contains words like 'refund', 'return', 'complaint', or 'issue', set this to true, otherwise false.
 
 Write output as a JSON formatted string.
 `;
 
-  let sentiment = null, theme = null, ai_response = null;
+  let sentiment = null, theme = null, ai_response = null, escalation = false;
 
   // ---------
   // Get AI response
@@ -57,6 +62,7 @@ Write output as a JSON formatted string.
       parsed = JSON.parse(response.output_text);
       sentiment = parsed.sentiment || null;
       theme = parsed.theme || null;
+      escalation = parsed.escalation || false;
       ai_response = parsed.response || null;
     } catch (e) {
       ai_response = aiText;
@@ -70,8 +76,8 @@ Write output as a JSON formatted string.
   // ---------
   await client.query(
     `INSERT INTO processed_responses 
-      (review_id, channel, external_customer_id, customer_name, review_text, sentiment, theme, ai_response)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      (review_id, channel, external_customer_id, customer_name, review_text, star_rating, escalation, sentiment, theme, ai_response)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
      ON CONFLICT (review_id) DO NOTHING`,
     [
       reviewId,
@@ -79,6 +85,8 @@ Write output as a JSON formatted string.
       externalCustomerId,
       customerName,
       reviewText,
+      starRating,
+      escalation,
       sentiment,
       theme,
       ai_response
@@ -95,6 +103,8 @@ Write output as a JSON formatted string.
       externalCustomerId,
       customerName,
       reviewText,
+      starRating,
+      escalation,      
       sentiment,
       theme,
       ai_response
@@ -105,6 +115,18 @@ Write output as a JSON formatted string.
       Buffer.from(JSON.stringify(outgoingPayload)),
       { persistent: true }
     );
+
+    // ---------
+    // Send to notification queue if escalation is true
+    // ---------
+    if (escalation) {
+      await amqpChannel.assertQueue(NOTIFICATION_QUEUE_NAME, { durable: true });
+      amqpChannel.sendToQueue(
+        NOTIFICATION_QUEUE_NAME,
+        Buffer.from(JSON.stringify(outgoingPayload)),
+        { persistent: true }
+      );
+    }
   }
 }
 

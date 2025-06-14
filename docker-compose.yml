@@ -127,6 +127,61 @@ services:
     networks:
       - ${PROJECT_NAME}
 
+  # ----------------------------------------------------------------
+  # [Container] Notification Service
+  # ----------------------------------------------------------------
+  notification:
+    build:
+      context: .
+      dockerfile: ./notification/Dockerfile
+    container_name: ${PROJECT_NAME}-notification
+    env_file:
+      - .env
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    depends_on:
+      - rabbitmq
+    networks:
+      - ${PROJECT_NAME}
+
+  # ----------------------------------------------------------------
+  # [Container] Outgoing Service
+  # ----------------------------------------------------------------
+  outgoing:
+    build:
+      context: .
+      dockerfile: ./response/Dockerfile
+    container_name: ${PROJECT_NAME}-outgoing
+    env_file:
+      - .env
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    depends_on:
+      - rabbitmq
+    networks:
+      - ${PROJECT_NAME}
+
+  # ----------------------------------------------------------------
+  # [Container] Anomaly Detection Service
+  # ----------------------------------------------------------------
+  anomaly-detection:
+    build:
+      context: .
+      dockerfile: ./anomaly-detection/Dockerfile
+    container_name: ${PROJECT_NAME}-anomaly-detection
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    depends_on:
+      - postgres
+    networks:
+      - ${PROJECT_NAME}
+
 
 volumes:
   rabbitmq_data:

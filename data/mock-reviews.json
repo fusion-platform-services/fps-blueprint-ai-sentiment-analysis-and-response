@@ -57,7 +57,7 @@
     "reviewId": 7,
     "location": "Downtown",
     "channel": "Google Maps",
-    "text": "Food was cold when served. Disappointed.",
+    "text": "Food was cold when served. I want a refund for this issue.",
     "starRating": 1,
     "datetime": "2024-03-22T18:15:00Z",
     "externalCustomerId": "e1b2c3d4-0007-4000-8000-000000000007"
@@ -165,7 +165,7 @@
     "reviewId": 19,
     "location": "Downtown",
     "channel": "Google Maps",
-    "text": "The server was rude. Won't be coming back.",
+    "text": "The server was rude. I have a complaint and want to return.",
     "starRating": 1,
     "datetime": "2024-07-18T18:15:00Z",
     "externalCustomerId": "e1b2c3d4-0004-4000-8000-000000000004"
@@ -264,7 +264,7 @@
     "reviewId": 30,
     "location": "Midtown",
     "channel": "Facebook",
-    "text": "The chicken was undercooked. Please be careful.",
+    "text": "The chicken was undercooked. This is a serious issue, I want a refund.",
     "starRating": 1,
     "datetime": "2024-11-10T17:10:00Z",
     "externalCustomerId": "e1b2c3d4-0030-4000-8000-000000000030"

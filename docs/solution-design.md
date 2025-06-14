@@ -130,7 +130,7 @@ The solution delivers an **automated, end‑to‑end pipeline** that ingests gue
  
 / Use cloud-native services (rabbitmq, postgresql) for scalability /
 
-/ Move some services that are not running frequently to lambda functions (e.g. summarization, archival) /
+/ Consider using serverless (either ECS Fargate or Lambda functions). Current design has modular structure that makes these decisions easy. /
 
 / tagging and cost monitoring /
 
