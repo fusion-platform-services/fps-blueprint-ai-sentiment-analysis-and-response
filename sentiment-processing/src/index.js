@@ -6,6 +6,17 @@ const { getAIResponse } = require('./openai.js');
 
 dotenv.config();
 
+// Read prompt from Markdown file (skip the heading)
+const promptRaw = fs.readFileSync(
+  require('path').resolve(__dirname, '../prompts/review-analysis-prompt.md'),
+  'utf8'
+);
+const reviewAnalysisPrompt = promptRaw
+  .split('\n')
+  .filter(line => !line.startsWith('#'))
+  .join('\n')
+  .trim();
+
 const RABBITMQ_URL = `amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@rabbitmq:5672`;
 const POSTGRES_URL = `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@postgres:5432/${process.env.POSTGRES_DB}`;
 const CURATED_QUEUE_NAME = 'curated';
@@ -16,11 +27,13 @@ async function ensureTable(client) {
   await client.query(`
     CREATE TABLE IF NOT EXISTS processed_responses (
       review_id INT PRIMARY KEY,
+      review_date TIMESTAMPTZ,
       channel TEXT,
       external_customer_id TEXT,
       customer_name TEXT,
       review_text TEXT,
       star_rating INT,
+      location TEXT,
       escalation BOOLEAN DEFAULT FALSE,
       sentiment TEXT,
       theme TEXT,
@@ -33,20 +46,15 @@ async function ensureTable(client) {
 async function processReview(record, client, amqpChannel) {
   const reviewText = record.review || record.reviewText || record.text || '';
   const starRating = record.starRating || record.rating || 0;
+  const location = record.location || null;
   const reviewId = record.reviewId || record.id || null;
+  const reviewDate = record.reviewDate || record.datetime || new Date().toISOString();
   const externalCustomerId = record.externalCustomerId || null;
   const channel = record.channel || 'unknown';
   const customerName = record.customer?.name || null;
 
-  const prompt = `
-Analyze the customer review based on the following three criteria: 
-- sentiment: could be 'Positive', 'Neutral', or 'Negative'.
-- theme: generalize key words from the review.
-- response: only for negative reviews write a response to the customer. Offer free shipping as needed. For extreme cases offer 5% discount coupon for the next purchase in the store.
-- escalation: (only true / false) if the sentiment is 'Negative' and the review contains words like 'refund', 'return', 'complaint', or 'issue', set this to true, otherwise false.
-
-Write output as a JSON formatted string.
-`;
+  // Use prompt from JSON file
+  const prompt = reviewAnalysisPrompt;
 
   let sentiment = null, theme = null, ai_response = null, escalation = false;
 
@@ -76,16 +84,18 @@ Write output as a JSON formatted string.
   // ---------
   await client.query(
     `INSERT INTO processed_responses 
-      (review_id, channel, external_customer_id, customer_name, review_text, star_rating, escalation, sentiment, theme, ai_response)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      (review_id, review_date, channel, external_customer_id, customer_name, review_text, star_rating, location, escalation, sentiment, theme, ai_response)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
      ON CONFLICT (review_id) DO NOTHING`,
     [
       reviewId,
+      reviewDate,
       channel,
       externalCustomerId,
       customerName,
       reviewText,
       starRating,
+      location,
       escalation,
       sentiment,
       theme,
@@ -104,6 +114,7 @@ Write output as a JSON formatted string.
       customerName,
       reviewText,
       starRating,
+      location,
       escalation,      
       sentiment,
       theme,

@@ -13,9 +13,11 @@ async function detectTrendsAndAnomalies(pgClient) {
     CREATE TABLE IF NOT EXISTS response_trends (
       trend_date DATE,
       channel TEXT,
+      location TEXT,
       sentiment TEXT,
       theme TEXT,
       review_count INT,
+      escalation_count INT DEFAULT 0,
       avg_star_rating FLOAT,
       anomaly BOOLEAN DEFAULT FALSE,
       PRIMARY KEY (trend_date, channel, sentiment, theme)
@@ -28,15 +30,17 @@ async function detectTrendsAndAnomalies(pgClient) {
   // 2. Aggregate daily stats for last 30 days
   const aggRes = await pgClient.query(`
     SELECT
-      DATE(created_at) AS trend_date,
+      DATE(review_date) AS trend_date,
       channel,
+      location,
       sentiment,
       theme,
       COUNT(*) AS review_count,
+      COUNT(CASE WHEN escalation = true THEN 1 END) AS escalation_count,
       AVG(star_rating) AS avg_star_rating
     FROM processed_responses
     WHERE created_at >= NOW() - INTERVAL '30 days'
-    GROUP BY trend_date, channel, sentiment, theme
+    GROUP BY trend_date, channel, location, sentiment, theme
     ORDER BY trend_date DESC
   `);
 
@@ -69,18 +73,16 @@ async function detectTrendsAndAnomalies(pgClient) {
   // 4. Upsert into response_trends
   for (const row of inserts) {
     await pgClient.query(`
-      INSERT INTO response_trends (trend_date, channel, sentiment, theme, review_count, avg_star_rating, anomaly)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
-      ON CONFLICT (trend_date, channel, sentiment, theme)
-      DO UPDATE SET review_count = EXCLUDED.review_count,
-                    avg_star_rating = EXCLUDED.avg_star_rating,
-                    anomaly = EXCLUDED.anomaly
+      INSERT INTO response_trends (trend_date, channel, location, sentiment, theme, review_count, escalation_count, avg_star_rating, anomaly)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     `, [
       row.trend_date,
       row.channel,
+      row.location,
       row.sentiment,
       row.theme,
       row.review_count,
+      row.escalation_count,
       row.avg_star_rating,
       row.anomaly
     ]);

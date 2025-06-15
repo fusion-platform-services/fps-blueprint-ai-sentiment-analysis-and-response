@@ -1,0 +1,16 @@
+{
+  "name": "PostgreSQL",
+  "type": "postgres",
+  "access": "proxy",
+  "url": "postgres:5432",
+  "database": "${POSTGRES_DB}",
+  "user": "${POSTGRES_USER}",
+  "password": "${POSTGRES_PASSWORD}",
+  "isDefault": true,
+  "editable": true,
+  "jsonData": {
+    "sslmode": "disable",
+    "postgresVersion": 1200,
+    "timescaledb": false
+  }
+}
