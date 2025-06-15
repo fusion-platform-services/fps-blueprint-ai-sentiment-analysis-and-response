@@ -173,7 +173,7 @@
   {
     "reviewId": 20,
     "location": "Uptown",
-    "channel": "Instagram",
+    "channel": "Google Maps",
     "text": "Portion sizes are generous. Great value for money.",
     "starRating": 4,
     "datetime": "2024-08-01T19:20:00Z",
@@ -182,7 +182,7 @@
   {
     "reviewId": 21,
     "location": "Midtown",
-    "channel": "Facebook",
+    "channel": "Google Maps",
     "text": "Loved the decor and the vibe. Food was good too.",
     "starRating": 4,
     "datetime": "2024-08-10T20:25:00Z",
@@ -191,7 +191,7 @@
   {
     "reviewId": 22,
     "location": "Downtown",
-    "channel": "Google Maps",
+    "channel": "Facebook",
     "text": "The soup was too salty. Otherwise, nice experience.",
     "starRating": 3,
     "datetime": "2024-08-18T21:30:00Z",
@@ -236,7 +236,7 @@
   {
     "reviewId": 27,
     "location": "Midtown",
-    "channel": "Facebook",
+    "channel": "Google Maps",
     "text": "Staff went above and beyond to accommodate us.",
     "starRating": 5,
     "datetime": "2024-10-10T14:10:00Z",
@@ -289,7 +289,7 @@
   },
   {
     "reviewId": 33,
-    "location": "Midtown",
+    "location": "Downtown",
     "channel": "Facebook",
     "text": "The coffee was strong and flavorful.",
     "starRating": 4,
@@ -308,7 +308,7 @@
   {
     "reviewId": 35,
     "location": "Uptown",
-    "channel": "Instagram",
+    "channel": "Google Maps",
     "text": "The fish tacos are my favorite!",
     "starRating": 5,
     "datetime": "2024-01-05T22:35:00Z",
@@ -361,7 +361,7 @@
   },
   {
     "reviewId": 41,
-    "location": "Uptown",
+    "location": "Downtown",
     "channel": "Instagram",
     "text": "The burger buns were stale.",
     "starRating": 2,
@@ -388,7 +388,7 @@
   },
   {
     "reviewId": 44,
-    "location": "Uptown",
+    "location": "Downtown",
     "channel": "Instagram",
     "text": "The staff was not attentive.",
     "starRating": 2,
@@ -397,7 +397,7 @@
   },
   {
     "reviewId": 45,
-    "location": "Midtown",
+    "location": "Downtown",
     "channel": "Facebook",
     "text": "The soup of the day was delicious.",
     "starRating": 5,
