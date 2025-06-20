@@ -12,6 +12,11 @@ This repository is a reference implementation intended for learning and fast pro
 
 Released under the MIT License — see [LICENSE](/LICENSE) for details.
 
+## 📑 Solution Design  
+
+For a deep dive into the architecture—including purpose, context, container diagrams, data flow, and component details—see **[`docs/solution-design.md`](docs/solution-design.md)**.
+
+
 ## 📂 Repository Structure
 
 ```qraphql
