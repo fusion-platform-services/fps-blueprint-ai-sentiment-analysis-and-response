@@ -173,7 +173,7 @@ This open, composable architecture keeps costs low, scales horizontally, and iso
 ## 9 — Getting Started Locally
 
 ```bash
-git clone https://github.com/fusion-platform-services/fps-blueprint-ai-sentiment-analysis-and-response.git
+git clone https://github.com/fps4/fps-blueprint-ai-sentiment-analysis-and-response.git
 cd fps-blueprint-ai-sentiment-analysis-and-response
 cp .env.example .env         # fill secrets
 docker compose up --build
